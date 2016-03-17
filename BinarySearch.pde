@@ -1,4 +1,3 @@
-
 private Item[] store = {new Item(184, 14), 
   new Item(196, 60), 
   new Item(206, 31), 
@@ -34,7 +33,7 @@ public int binarySearch(int catNumToFind)
   int low = 0;
   int high = store.length-1;
 
-  while (low < high)
+  while (low <= high)
   {
     int guess = (low+high)/2;
     Item temp = store[guess];
@@ -53,11 +52,16 @@ public int binarySearch(int catNumToFind)
 public int binarySearch(int catNumToFind, int nLow, int nHigh)
 {
   int guess = (nLow + nHigh)/2;
-  if ( nLow >= nHigh)
+  Item temp = store[guess];
+  
+  int tempgetCatNum = temp.getCatNum();
+  int tempgetInventory = temp.getInventory();
+  
+  if ( nLow > nHigh)
     return -1;
-  if ( store[guess].getCatNum() == catNumToFind)
-    return store[guess].getInventory();
-  else if (store[guess].getCatNum() < catNumToFind)
+  if ( tempgetCatNum == catNumToFind)
+    return tempgetInventory;
+  else if (tempgetCatNum < catNumToFind)
     return binarySearch(catNumToFind, nLow + 1, nHigh);
   else 
     return binarySearch(catNumToFind, nLow, nHigh -1 );
